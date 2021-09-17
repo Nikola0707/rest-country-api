@@ -3,6 +3,7 @@ import Header from './components/Header/Header.components'
 import Search from './components/Search/Search.component';
 import Filter from './components/Filter/Filter.component';
 import Country from './components/CountryCard/Country.component';
+import CountryInfo from './components/CountryPage/CountryInfo.component'
 function App() {
   return (
     <div className="App">
@@ -23,6 +24,7 @@ function App() {
           <Country />
         </div>
       </div>
+      <CountryInfo />
     </div>
   );
 }
