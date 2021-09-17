@@ -1,0 +1,27 @@
+.contry-container {
+  width: 100%;
+  background-color: #fff;
+  margin: 0 auto;
+}
+.country-img-wrapper img{
+    width: 100%;
+}
+.country-name {
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+.country-info {
+  margin-left: 20px;
+  font-size: 14px;
+  font-weight: 800;
+}
+.population-region-capital-wrapper {
+  margin-bottom: 50px;
+}
+.population-region-capital-wrapper p {
+  margin: 0;
+}
+.population-region-capital-wrapper span{
+    color: #3a3939;
+}

@@ -1,0 +1,16 @@
+.filter-container{
+    margin-top: 40px;
+    width: 250px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+.select-wrapper select{
+    width: 100%;
+    border: none;
+    padding: 10px 20px;
+    background-color: #fff;
+}
+.select-wrapper select:focus{
+    outline: none;
+}

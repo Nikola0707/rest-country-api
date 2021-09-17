@@ -1,0 +1,21 @@
+.search-field{
+    margin-top: 40px;
+    width: 450px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+.search-wrapper{
+    display: flex;
+}
+.search-wrapper input{
+    width: 100%;
+    border: none;
+    padding: 10px 20px;
+}
+.search-wrapper input:focus{
+    outline: none;
+}
+.icon-wrap{
+    padding-top: 10px;
+}
