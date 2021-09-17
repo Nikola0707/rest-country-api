@@ -1,13 +1,18 @@
 import "./CountryInfo.style.css";
 import { MdKeyboardBackspace } from "react-icons/md";
 
+// React Router
+import { Link } from "react-router-dom";
+
 const CountryInfo = () => {
   return (
     <div className="country-info-container">
       <div className="back">
-        <div className="arrow">
-          <MdKeyboardBackspace /> <span>Back</span>
-        </div>
+        <Link to="/">
+          <div className="arrow">
+            <MdKeyboardBackspace /> <span>Back</span>
+          </div>
+        </Link>
       </div>
       <div className="country-info-wrapper">
         <div className="country-info-img-wrapper">
