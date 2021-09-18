@@ -58,6 +58,7 @@
   padding: 12px;
   text-align: center;
   color: #6b6b6b;
+  cursor: pointer;
 }
 .title {
   font-size: 35px;

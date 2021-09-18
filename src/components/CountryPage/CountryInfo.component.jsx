@@ -13,9 +13,28 @@ const CountryInfo = () => {
   //Custom State
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
+  const [border, setBorder] = useState("");
+  const [borderData, setBorderData] = useState("");
+  const [findName, setFindName] = useState(name)
 
   useEffect(() => {
-    fetch(`https://restcountries.eu/rest/v2/name/${name}?fullText=true`)
+    if (border.length > 0) {
+      fetch(`https://restcountries.eu/rest/v2/alpha/${border}`)
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw response;
+        })
+        .then((data) => setFindName(data.name))
+        .catch((error) => {
+          console.error("Error fetching data ", error);
+        });
+    }
+  }, [border]);
+
+  useEffect(() => {
+    fetch(`https://restcountries.eu/rest/v2/name/${findName}?fullText=true`)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -28,6 +47,8 @@ const CountryInfo = () => {
       })
       .finally(() => setLoading(false));
   }, []);
+
+  console.log(borderData);
 
   if (loading) {
     return "Loading";
@@ -86,9 +107,24 @@ const CountryInfo = () => {
             <span className="flex">
               {data[0].borders.map((border, i) => {
                 return (
-                  <p className="border-countries-name" key={i}>
-                    {border}
-                  </p>
+                  <Link
+                    to={{
+                      pathname: "/country",
+                      state: {
+                        name: borderData,
+                      },
+                    }}
+                  >
+                    <p
+                      className="border-countries-name"
+                      key={i}
+                      onClick={() => {
+                        setBorder(border);
+                      }}
+                    >
+                      {border}
+                    </p>
+                  </Link>
                 );
               })}
             </span>
