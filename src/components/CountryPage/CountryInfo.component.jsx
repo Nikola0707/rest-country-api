@@ -52,9 +52,11 @@ const CountryInfo = () => {
           </div>
           <div className="border-countries">
             <p className="border-countries-title">Border Countries:</p>
-            <p className="border-countries-name">France</p>
-            <p className="border-countries-name">Germany</p>
-            <p className="border-countries-name">Netherlands</p>
+            <span className="flex">
+              <p className="border-countries-name">France</p>
+              <p className="border-countries-name">Germany</p>
+              <p className="border-countries-name">Netherlands</p>
+            </span>
           </div>
         </div>
       </div>
