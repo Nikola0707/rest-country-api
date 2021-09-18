@@ -13,25 +13,22 @@ const CountryInfo = () => {
   //Custom State
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
-  const [border, setBorder] = useState("");
-  const [borderData, setBorderData] = useState("");
-  const [findName, setFindName] = useState(name)
+  const [borderData] = useState("");
+  const [findName, setFindName] = useState(name);
 
-  useEffect(() => {
-    if (border.length > 0) {
-      fetch(`https://restcountries.eu/rest/v2/alpha/${border}`)
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          }
-          throw response;
-        })
-        .then((data) => setFindName(data.name))
-        .catch((error) => {
-          console.error("Error fetching data ", error);
-        });
-    }
-  }, [border]);
+  const handleBorderClick = (bor) => {
+    fetch(`https://restcountries.eu/rest/v2/alpha/${bor}`)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw response;
+      })
+      .then((data) => setFindName(data.name))
+      .catch((error) => {
+        console.error("Error fetching data ", error);
+      });
+  };
 
   useEffect(() => {
     fetch(`https://restcountries.eu/rest/v2/name/${findName}?fullText=true`)
@@ -46,7 +43,7 @@ const CountryInfo = () => {
         console.error("Error fetching data ", error);
       })
       .finally(() => setLoading(false));
-  }, []);
+  }, [findName]);
 
   console.log(borderData);
 
@@ -105,22 +102,21 @@ const CountryInfo = () => {
           <div className="border-countries">
             <p className="border-countries-title">Border Countries:</p>
             <span className="flex">
-              {data[0].borders.map((border, i) => {
+              {data[0].borders.map((border, index) => {
                 return (
                   <Link
                     to={{
-                      pathname: "/country",
+                      pathname: "/country-border",
                       state: {
-                        name: borderData,
+                        name: findName,
                       },
                     }}
+                    key={index}
                   >
                     <p
                       className="border-countries-name"
-                      key={i}
-                      onClick={() => {
-                        setBorder(border);
-                      }}
+                      onClick={(e) => handleBorderClick(border)}
+                      key={index}
                     >
                       {border}
                     </p>
