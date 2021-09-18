@@ -9,6 +9,31 @@ const HomePage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const [filteredData, setFilteredData] = useState([]);
+  const [wordEntered, setWordEntered] = useState("");
+
+  const handleSearch = (e) => {
+    const searchWord = e.target.value;
+    setWordEntered(searchWord);
+
+    const newFilter = data.filter((country) => {
+      return country.name.toLowerCase().includes(searchWord.toLowerCase());
+    });
+
+    if (searchWord === "") {
+      setFilteredData([]);
+    } else {
+      setFilteredData(newFilter);
+    }
+  };
+
+  const handleFilter = (value) => {
+    const filter = data.filter((data) => {
+      return data.region.toLowerCase().includes(value.toLowerCase());
+    });
+    return setFilteredData(filter);
+  };
+
   useEffect(() => {
     fetch("https://restcountries.eu/rest/v2/all")
       .then((response) => {
@@ -25,26 +50,47 @@ const HomePage = () => {
       .finally(() => setLoading(false));
   }, []);
 
-  console.log(data);
   return (
     <>
       <Header />
       <div className="main-content-container">
         <div className="search-filter-container">
-          <Search />
-          <Filter />
+          <Search handleSearch={handleSearch} />
+          <Filter handleFilter={handleFilter} />
         </div>
         <div className="countries-container">
-          {loading
+          {filteredData.length > 0
+            ? filteredData.map((country, i) => {
+                return (
+                  <Country
+                    name={country.name}
+                    flag={country.flag}
+                    population={country.population}
+                    region={country.region}
+                    capital={country.capital}
+                    key={i}
+                  />
+                );
+              })
+            : loading
             ? "Loading"
-            : data.map((country) => {
+            : data.map((country, i) => {
                 const name = country.name;
                 const flag = country.flag;
                 const population = country.population;
                 const region = country.region;
-                const capital = country.capital 
-                
-                return <Country name={name} flag={flag} population={population} region={region} capital={capital}/> 
+                const capital = country.capital;
+
+                return (
+                  <Country
+                    name={name}
+                    flag={flag}
+                    population={population}
+                    region={region}
+                    capital={capital}
+                    key={i}
+                  />
+                );
               })}
         </div>
       </div>

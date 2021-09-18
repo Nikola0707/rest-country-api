@@ -1,20 +1,22 @@
-import './Filter.style.css'
+import "./Filter.style.css";
 
-const Filter = () => {
-    return(
-        <div className="filter-container">
-            <div className="select-wrapper">
-            <select name="region" id="region">
-            <option value="Filter by Region" defaultValue>Filter by Region</option>
-            <option value="afrika">Africa</option>
-            <option value="america">America</option>
-            <option value="asia">Asia</option>
-            <option value="europe">Europe</option>
-            <option value="oceania">Oceania</option>
+const Filter = ({handleFilter}) => {
+  return (
+    <div className="filter-container">
+      <div className="select-wrapper">
+        <select name="region" id="region" onChange={e => handleFilter(e.target.value)}>
+          <option value="Filter by Region" defaultValue>
+            Filter by Region
+          </option>
+          <option value="Afrika">Africa</option>
+          <option value="America">America</option>
+          <option value="Asia">Asia</option>
+          <option value="Europe">Europe</option>
+          <option value="Oceania">Oceania</option>
         </select>
-            </div>
+      </div>
     </div>
-    )
-}
+  );
+};
 
 export default Filter;
