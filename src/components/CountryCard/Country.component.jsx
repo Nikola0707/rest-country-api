@@ -3,7 +3,12 @@ import "./Country.style.css";
 
 const Country = ({name, flag, population, region, capital}) => {
   return (
-    <Link to="/country">
+    <Link to={{
+      pathname: '/country',
+      state: {
+        name: name
+      }
+    }}>
       <div className="contry-container">
         <div className="country-img-wrapper">
           <img src={flag} alt={name} />

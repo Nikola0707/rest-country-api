@@ -2,9 +2,37 @@ import "./CountryInfo.style.css";
 import { MdKeyboardBackspace } from "react-icons/md";
 
 // React Router
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const CountryInfo = () => {
+  // React router STATE Props
+  const location = useLocation();
+  const { name } = location.state;
+
+  //Custom State
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    fetch(`https://restcountries.eu/rest/v2/name/${name}?fullText=true`)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw response;
+      })
+      .then((data) => setData(data))
+      .catch((error) => {
+        console.error("Error fetching data ", error);
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (loading) {
+    return "Loading";
+  }
+
   return (
     <div className="country-info-container">
       <div className="back">
@@ -16,46 +44,53 @@ const CountryInfo = () => {
       </div>
       <div className="country-info-wrapper">
         <div className="country-info-img-wrapper">
-          <img src="https://i.imgur.com/vnvHjxc.png" alt="countryImg " />
+          <img src={data[0].flag} alt="countryImg " />
         </div>
         <div className="country-info-panel">
-          <div className="title">Belgium</div>
+          <div className="title">{data[0].name}</div>
           <div className="country-info-informations">
             <div className="left-side">
               <p>
-                Native Name: <span>Belgie</span>
+                Native Name: <span>{data[0].name}</span>
               </p>
               <p>
-                Population: <span>11.319.511</span>
+                Population: <span>{data[0].population}</span>
               </p>
               <p>
-                Region <span>Europe</span>
+                Region <span>{data[0].region}</span>
               </p>
               <p>
-                Sub region: <span>Western Europe</span>
+                Sub region: <span>{data[0].subregion}</span>
               </p>
               <p>
-                Capital: <span>Brussels</span>
+                Capital: <span>{data[0].capital}</span>
               </p>
             </div>
             <div className="right-side">
               <p>
-                Top Level Domain <span>.be</span>
+                Top Level Domain <span>{data[0].topLevelDomain}</span>
               </p>
               <p>
-                Currencies: <span>Euro</span>
+                Currencies: <span>{data[0].currencies[0].name}</span>
               </p>
               <p>
-                Languages: <span>Dutch, French, German</span>
+                Languages:{" "}
+                {data[0].languages.map((language, index) => {
+                  return <span key={index}>{language.name}</span>;
+                })}
               </p>
             </div>
           </div>
           <div className="border-countries">
             <p className="border-countries-title">Border Countries:</p>
             <span className="flex">
-              <p className="border-countries-name">France</p>
-              <p className="border-countries-name">Germany</p>
-              <p className="border-countries-name">Netherlands</p>
+              {data[0].borders.map((border, i) => {
+                return (
+                  <p className="border-countries-name" key={i}>
+                    {border}
+                  </p>
+                );
+              })}
             </span>
           </div>
         </div>
