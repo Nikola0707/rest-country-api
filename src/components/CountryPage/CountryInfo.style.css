@@ -1,11 +1,11 @@
 .country-info-container {
   background-color: #fff;
 }
-.back{
+.back {
   width: 90%;
   margin: 100px auto;
 }
-.arrow{
+.arrow {
   width: 150px;
   display: flex;
   justify-content: center;
@@ -16,7 +16,7 @@
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding: 10px;
 }
-.arrow span{
+.arrow span {
   margin-left: 10px;
 }
 .country-info-wrapper {
@@ -63,9 +63,13 @@
   font-weight: 800;
   margin-bottom: 30px;
 }
-.country-info-informations span{
-    color: #6b6b6b;
+.country-info-informations span {
+  color: #6b6b6b;
 }
-a{
+a {
   text-decoration: none;
+}
+.flex {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }

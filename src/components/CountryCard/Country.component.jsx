@@ -1,24 +1,24 @@
 import { Link } from "react-router-dom";
 import "./Country.style.css";
 
-const Country = () => {
+const Country = ({name, flag, population, region, capital}) => {
   return (
     <Link to="/country">
       <div className="contry-container">
         <div className="country-img-wrapper">
-          <img src="https://i.imgur.com/LSO8EjB.png" alt="country" />
+          <img src={flag} alt={name} />
         </div>
         <div className="country-info">
-          <p className="country-name">Germany</p>
+          <p className="country-name">{name}</p>
           <div className="population-region-capital-wrapper">
             <p>
-              Population: <span>81.770.990</span>
+              Population: <span>{population}</span>
             </p>
             <p>
-              Region: <span>Europe</span>
+              Region: <span>{region}</span>
             </p>
             <p>
-              Capital: <span>Berlin</span>
+              Capital: <span>{capital}</span>
             </p>
           </div>
         </div>

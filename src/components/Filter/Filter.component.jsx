@@ -5,7 +5,7 @@ const Filter = () => {
         <div className="filter-container">
             <div className="select-wrapper">
             <select name="region" id="region">
-            <option value="Filter by Region" selected>Filter by Region</option>
+            <option value="Filter by Region" defaultValue>Filter by Region</option>
             <option value="afrika">Africa</option>
             <option value="america">America</option>
             <option value="asia">Asia</option>

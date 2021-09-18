@@ -7,18 +7,18 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <div className="App">
+    <div className="App">
+      <Router>
+        <Switch>
           <Route exact path="/">
             <HomePage />
           </Route>
           <Route exact path="/country">
             <CountryInfo />
           </Route>
-        </div>
-      </Switch>
-    </Router>
+        </Switch>
+      </Router>
+    </div>
   );
 }
 
