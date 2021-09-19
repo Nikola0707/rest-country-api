@@ -63,7 +63,7 @@ const HomePage = () => {
                   <Country
                     name={country.name}
                     flag={country.flag}
-                    population={country.population}
+                    population={country.population.toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
                     region={country.region}
                     capital={country.capital}
                     key={i}
@@ -75,7 +75,7 @@ const HomePage = () => {
             : data.map((country, i) => {
                 const name = country.name;
                 const flag = country.flag;
-                const population = country.population;
+                const population = country.population.toLocaleString(navigator.language, { minimumFractionDigits: 0 });
                 const region = country.region;
                 const capital = country.capital;
 

@@ -3,6 +3,11 @@
   height: 100%;
   padding-top: 50px;
 }
+.country-info-container-dark {
+  background-color: #212e37;
+  height: 100%;
+  padding-top: 50px;
+}
 .back {
   width: 90%;
   margin: 0 auto;
@@ -17,6 +22,18 @@
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding: 10px;
+}
+.arrow-dark {
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  border: 2px solid #1d2a33;
+  border-radius: 5px;
+  box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+  padding: 10px;
+  background: #2b3743;
 }
 .arrow span {
   margin-left: 10px;
@@ -61,12 +78,25 @@
   color: #6b6b6b;
   cursor: pointer;
 }
+.border-countries-name-dark {
+  border: 2px solid #1d2a33;
+  min-width: 170px;
+  margin: 5px;
+  padding: 12px;
+  text-align: center;
+  color: #6b6b6b;
+  cursor: pointer;
+  background-color: #2B3743;
+}
 .title {
   font-size: 35px;
   font-weight: 800;
   margin-bottom: 30px;
 }
-.country-info-informations span {
+.country-info-informations-span-light {
+  color: #a3a3a3;
+}
+.country-info-informations-span-dark {
   color: #6b6b6b;
 }
 a {
@@ -77,6 +107,6 @@ a {
   grid-template-columns: repeat(3, 1fr);
 }
 .left-side p,
-.right-side p{
+.right-side p {
   font-weight: 600;
 }

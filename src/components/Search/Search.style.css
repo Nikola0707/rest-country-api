@@ -5,6 +5,13 @@
     border-radius: 5px;
     background-color: #fff;
 }
+.search-field-dark{
+    margin-top: 40px;
+    width: 450px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #2B3743;
+}
 .search-wrapper{
     display: flex;
 }
@@ -18,4 +25,11 @@
 }
 .icon-wrap{
     padding-top: 10px;
+}
+.input-dark{
+    background-color: #2B3743;
+    color: #ffffff;
+}
+.input-dark::placeholder{
+    color: #fff;
 }

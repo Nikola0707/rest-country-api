@@ -1,15 +1,27 @@
 import { Link } from "react-router-dom";
 import "./Country.style.css";
 
-const Country = ({name, flag, population, region, capital}) => {
+// React Redux
+import { useSelector } from "react-redux";
+
+const Country = ({ name, flag, population, region, capital }) => {
+  // redux State
+  const changeBackgroundState = useSelector((state) => state.mode);
+
   return (
-    <Link to={{
-      pathname: '/country',
-      state: {
-        name: name
-      }
-    }}>
-      <div className="contry-container">
+    <Link
+      to={{
+        pathname: "/country",
+        state: {
+          name: name,
+        },
+      }}
+    >
+      <div
+        className={
+          changeBackgroundState ? "contry-container-dark" : "contry-container"
+        }
+      >
         <div className="country-img-wrapper">
           <img src={flag} alt={name} />
         </div>
@@ -17,13 +29,13 @@ const Country = ({name, flag, population, region, capital}) => {
           <p className="country-name">{name}</p>
           <div className="population-region-capital-wrapper">
             <p>
-              Population: <span>{population}</span>
+              Population: <span className={changeBackgroundState ? "span-dark" : "span-light"}>{population}</span>
             </p>
             <p>
-              Region: <span>{region}</span>
+              Region: <span className={changeBackgroundState ? "span-dark" : "span-light"}>{region}</span>
             </p>
             <p>
-              Capital: <span>{capital}</span>
+              Capital: <span className={changeBackgroundState ? "span-dark" : "span-light"}>{capital}</span>
             </p>
           </div>
         </div>

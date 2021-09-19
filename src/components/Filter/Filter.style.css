@@ -5,6 +5,13 @@
     border-radius: 5px;
     background-color: #fff;
 }
+.filter-container-dark{
+    margin-top: 40px;
+    width: 250px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #2B3743;
+}
 .select-wrapper select{
     width: 100%;
     border: none;
@@ -12,5 +19,16 @@
     background-color: #fff;
 }
 .select-wrapper select:focus{
+    outline: none;
+}
+
+.select-wrapper-dark select{
+    width: 100%;
+    border: none;
+    padding: 10px 20px;
+    background-color: #2B3743;
+    color: #ffffff;
+}
+.select-wrapper-dark select:focus{
     outline: none;
 }

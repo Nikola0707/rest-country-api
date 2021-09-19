@@ -10,7 +10,6 @@ import { actions } from "../../redux/index";
 const Header = () => {
   // Redux
   const changeBackgroundState = useSelector((state) => state.mode);
-  const theme = useSelector((state) => state.dark);
 
   console.log(changeBackgroundState);
   const dispatch = useDispatch();

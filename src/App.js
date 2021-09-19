@@ -1,26 +1,21 @@
 import "./App.css";
-import Header from "./components/Header/Header.components"
+import Header from "./components/Header/Header.components";
 import HomePage from "./components/HomePage/HomePage.component";
 import CountryInfo from "./components/CountryPage/CountryInfo.component";
 
 //React Redux
-import { useSelector, useDispatch } from "react-redux";
-import { bindActionCreators } from "redux";
-import { actions } from "./redux/index"
+import { useSelector } from "react-redux";
 
 // React Router
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { useState } from "react";
 
 function App() {
   // redux state
-  const state = useSelector((state) => state.mode)
-  
-  const [background, setBackground] = useState('')
-  
+  const changeBackgroundState = useSelector((state) => state.mode);
+
   return (
-    <div className="App" style={{background: background}}>
-      <Header setBackground={setBackground}/>
+    <div className={changeBackgroundState ? "App-dark" : "App"}>
+      <Header />
       <Router>
         <Switch>
           <Route exact path="/">

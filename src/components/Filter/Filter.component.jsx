@@ -1,9 +1,15 @@
 import "./Filter.style.css";
 
+// React Redux
+import { useSelector } from "react-redux";
+
 const Filter = ({handleFilter}) => {
+  // redux state
+  const changeBackgroundState = useSelector(state => state.mode)
+
   return (
-    <div className="filter-container">
-      <div className="select-wrapper">
+    <div className={changeBackgroundState ? "filter-container-dark" : "filter-container"}>
+      <div className={changeBackgroundState ? "select-wrapper-dark" : "select-wrapper"}>
         <select name="region" id="region" onChange={e => handleFilter(e.target.value)}>
           <option value="Filter by Region" defaultValue>
             Filter by Region

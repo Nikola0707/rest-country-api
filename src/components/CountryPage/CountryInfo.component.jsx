@@ -5,7 +5,13 @@ import { MdKeyboardBackspace } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+// React Redux
+import { useSelector } from "react-redux";
+
 const CountryInfo = () => {
+  // Redux State
+  const changeBackgroundState = useSelector((state) => state.mode);
+
   // React router STATE Props
   const location = useLocation();
   const { name } = location.state;
@@ -52,10 +58,16 @@ const CountryInfo = () => {
   }
 
   return (
-    <div className="country-info-container">
+    <div
+      className={
+        changeBackgroundState
+          ? "country-info-container-dark"
+          : "country-info-container"
+      }
+    >
       <div className="back">
         <Link to="/">
-          <div className="arrow">
+          <div className={changeBackgroundState ? "arrow-dark" : "arrow"}>
             <MdKeyboardBackspace /> <span>Back</span>
           </div>
         </Link>
@@ -69,32 +81,106 @@ const CountryInfo = () => {
           <div className="country-info-informations">
             <div className="left-side">
               <p>
-                Native Name: <span>{data[0].name}</span>
+                Native Name:{" "}
+                <span
+                  className={
+                    changeBackgroundState
+                      ? "country-info-informations-span-light"
+                      : "country-info-informations-span-dark"
+                  }
+                >
+                  {data[0].name}
+                </span>
               </p>
               <p>
-                Population: <span>{data[0].population}</span>
+                Population:{" "}
+                <span
+                  className={
+                    changeBackgroundState
+                      ? "country-info-informations-span-light"
+                      : "country-info-informations-span-dark"
+                  }
+                >
+                  {data[0].population.toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
+                </span>
               </p>
               <p>
-                Region <span>{data[0].region}</span>
+                Region{" "}
+                <span
+                  className={
+                    changeBackgroundState
+                      ? "country-info-informations-span-light"
+                      : "country-info-informations-span-dark"
+                  }
+                >
+                  {data[0].region}
+                </span>
               </p>
               <p>
-                Sub region: <span>{data[0].subregion}</span>
+                Sub region:{" "}
+                <span
+                  className={
+                    changeBackgroundState
+                      ? "country-info-informations-span-light"
+                      : "country-info-informations-span-dark"
+                  }
+                >
+                  {data[0].subregion}
+                </span>
               </p>
               <p>
-                Capital: <span>{data[0].capital}</span>
+                Capital:{" "}
+                <span
+                  className={
+                    changeBackgroundState
+                      ? "country-info-informations-span-light"
+                      : "country-info-informations-span-dark"
+                  }
+                >
+                  {data[0].capital}
+                </span>
               </p>
             </div>
             <div className="right-side">
               <p>
-                Top Level Domain <span>{data[0].topLevelDomain}</span>
+                Top Level Domain{" "}
+                <span
+                  className={
+                    changeBackgroundState
+                      ? "country-info-informations-span-light"
+                      : "country-info-informations-span-dark"
+                  }
+                >
+                  {data[0].topLevelDomain}
+                </span>
               </p>
               <p>
-                Currencies: <span>{data[0].currencies[0].name}</span>
+                Currencies:{" "}
+                <span
+                  className={
+                    changeBackgroundState
+                      ? "country-info-informations-span-light"
+                      : "country-info-informations-span-dark"
+                  }
+                >
+                  {data[0].currencies[0].name}
+                </span>
               </p>
               <p>
                 Languages:{" "}
                 {data[0].languages.map((language, index) => {
-                  return <span key={index}>{language.name}</span>;
+                  return (
+                    <span
+                      className={
+                        changeBackgroundState
+                          ? "country-info-informations-span-light"
+                          : "country-info-informations-span-dark"
+                      }
+                      key={index}
+                    >
+                      {language.name}
+                    </span>
+                  );
                 })}
               </p>
             </div>
@@ -114,7 +200,11 @@ const CountryInfo = () => {
                     key={index}
                   >
                     <p
-                      className="border-countries-name"
+                      className={
+                        changeBackgroundState
+                          ? "border-countries-name-dark "
+                          : "border-countries-name"
+                      }
                       onClick={(e) => handleBorderClick(border)}
                       key={index}
                     >
