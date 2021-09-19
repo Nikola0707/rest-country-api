@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Country from "../CountryCard/Country.component";
 import Filter from "../Filter/Filter.component";
-import Header from "../Header/Header.components";
 import Search from "../Search/Search.component";
 
 const HomePage = () => {
@@ -52,7 +51,6 @@ const HomePage = () => {
 
   return (
     <>
-      <Header />
       <div className="main-content-container">
         <div className="search-filter-container">
           <Search handleSearch={handleSearch} />
