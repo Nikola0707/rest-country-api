@@ -23,7 +23,7 @@ const CountryInfo = () => {
   const [findName, setFindName] = useState(name);
 
   const handleBorderClick = (bor) => {
-    fetch(`https://restcountries.eu/rest/v2/alpha/${bor}`)
+    fetch(`https://restcountries.com/v3.1/alpha/${bor}`)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -37,7 +37,7 @@ const CountryInfo = () => {
   };
 
   useEffect(() => {
-    fetch(`https://restcountries.eu/rest/v2/name/${findName}?fullText=true`)
+    fetch(`https://restcountries.com/v3.1/name/${findName}`)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -51,7 +51,7 @@ const CountryInfo = () => {
       .finally(() => setLoading(false));
   }, [findName]);
 
-  console.log(borderData);
+  console.log(data);
 
   if (loading) {
     return "Loading";
@@ -74,10 +74,10 @@ const CountryInfo = () => {
       </div>
       <div className="country-info-wrapper">
         <div className="country-info-img-wrapper">
-          <img src={data[0].flag} alt="countryImg " />
+          <img src={data[0].flags.png} alt="countryImg " />
         </div>
         <div className="country-info-panel">
-          <div className="title">{data[0].name}</div>
+          <div className="title">{data[0].name.common}</div>
           <div className="country-info-informations">
             <div className="left-side">
               <p>
@@ -89,11 +89,11 @@ const CountryInfo = () => {
                       : "country-info-informations-span-dark"
                   }
                 >
-                  {data[0].name}
+                  {data[0].name.official}
                 </span>
               </p>
               <p>
-                Population:{" "}
+                {/* Population:{" "}
                 <span
                   className={
                     changeBackgroundState
@@ -102,7 +102,7 @@ const CountryInfo = () => {
                   }
                 >
                   {data[0].population.toLocaleString(navigator.language, { minimumFractionDigits: 0 })}
-                </span>
+                </span> */}
               </p>
               <p>
                 Region{" "}
@@ -151,7 +151,7 @@ const CountryInfo = () => {
                       : "country-info-informations-span-dark"
                   }
                 >
-                  {data[0].topLevelDomain}
+                  {data[0].tld}
                 </span>
               </p>
               <p>
@@ -163,12 +163,14 @@ const CountryInfo = () => {
                       : "country-info-informations-span-dark"
                   }
                 >
-                  {data[0].currencies[0].name}
+                  {Object.keys(data[0].currencies)}
                 </span>
               </p>
               <p>
                 Languages:{" "}
-                {data[0].languages.map((language, index) => {
+                {
+                  // Iterate throught the language object and render value
+                Object.entries(data[0].languages).map(([key, value]) => {
                   return (
                     <span
                       className={
@@ -176,12 +178,13 @@ const CountryInfo = () => {
                           ? "country-info-informations-span-light"
                           : "country-info-informations-span-dark"
                       }
-                      key={index}
+                      key={key}
                     >
-                      {language.name}
+                      {value}
                     </span>
                   );
                 })}
+                )
               </p>
             </div>
           </div>
