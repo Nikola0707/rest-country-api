@@ -51,8 +51,6 @@ const CountryInfo = () => {
       .finally(() => setLoading(false));
   }, [findName]);
 
-  console.log(borderData);
-
   if (loading) {
     return "Loading";
   }
@@ -163,7 +161,7 @@ const CountryInfo = () => {
                       : "country-info-informations-span-dark"
                   }
                 >
-                  {data[0].currencies[0].name}
+                  {data[0].currencies !== undefined ? data[0].currencies[0].name : "No currencies found"}
                 </span>
               </p>
               <p>
@@ -188,7 +186,7 @@ const CountryInfo = () => {
           <div className="border-countries">
             <p className="border-countries-title">Border Countries:</p>
             <span className="flex">
-              {data[0].borders.map((border, index) => {
+              {data[0].borders !== undefined ? data[0].borders.map((border, index) => {
                 return (
                   <Link
                     to={{
@@ -212,7 +210,8 @@ const CountryInfo = () => {
                     </p>
                   </Link>
                 );
-              })}
+              }) : 'No border countries'
+            }
             </span>
           </div>
         </div>

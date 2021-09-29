@@ -11,7 +11,6 @@ const Header = () => {
   // Redux
   const changeBackgroundState = useSelector((state) => state.mode);
 
-  console.log(changeBackgroundState);
   const dispatch = useDispatch();
 
   const { changeBackground } = bindActionCreators(actions, dispatch);
